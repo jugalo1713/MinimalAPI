@@ -1,12 +1,5 @@
-using AutoMapper;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using MinimalAPI;
-using MinimalAPI.Data;
 using MinimalAPI.EndPoint;
-using MinimalAPI.Models;
-using MinimalAPI.Models.DTO;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
