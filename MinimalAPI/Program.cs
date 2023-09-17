@@ -21,8 +21,9 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 
-app.MapGet("/api/coupon", () =>
+app.MapGet("/api/coupons", (ILogger<Program> _logger) =>
 {
+    _logger.Log(LogLevel.Information,  "Hello World");
     return Results.Ok(CouponStore.CouponList);
 }).WithName("GetCoupons").Produces<IEnumerable<Coupon>>(200);
 
@@ -45,7 +46,7 @@ app.MapPost("/api/coupon", ([FromBody] Coupon coupon) =>
     //return Results.Ok(coupon);
     //return Results.Created($"/api/coupon/{coupon.Id}", coupon);
     return Results.CreatedAtRoute($"GetCoupon", new { id= coupon.Id}, coupon);
-}).WithName("CreateCoupon").Produces<Coupon>(201).Produces(400);
+}).WithName("CreateCoupon").Accepts<Coupon>("application/json").Produces<Coupon>(201).Produces(400);
 
 app.MapPut("/api/coupon", () =>
 {
